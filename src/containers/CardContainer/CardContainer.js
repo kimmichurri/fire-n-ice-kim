@@ -5,7 +5,6 @@ import Card from '../../components/Card/Card';
 export class CardContainer extends Component {
   render() {
     const displayHouses = this.props.houses.map((house) => {
-      console.log(house)
       return <Card {...house} key={house.name} />
     });
     return (

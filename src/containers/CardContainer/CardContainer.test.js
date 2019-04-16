@@ -3,7 +3,7 @@ import { mapStateToProps } from './CardContainer';
 
 describe('CardContainer', () => {
   describe('mapStateToProps', () => {
-    it('should return an object with houses', () => {
+    it('should return an object with houses as props', () => {
       const mockState = {
         houses: [{house: 'a'}, {house: 'b'}],
         loading: true,

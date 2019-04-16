@@ -22,12 +22,11 @@ export class App extends Component {
         throw new Error()
       }
       const houses = await response.json();
-      console.log('houses', houses);
       this.props.houseData(houses);
       this.props.isLoading(false);
     } catch(error) {
       console.log(error.message)
-      //this is where you will want to dispatch an ac to set error message in store
+      //this is where you will want to set error message in store
     }
   }
 

@@ -4,7 +4,7 @@ import { houseData, isLoading } from '../../actions';
 
 describe('App', () => {
   describe('mapStateToProps', () => {
-    it('should return an object with loading', () => {
+    it('should return an object with loading as props', () => {
       const mockState = {
         loading: true,
         randomThing: 'randomThing'
@@ -18,7 +18,7 @@ describe('App', () => {
   });
   
   describe('mapDispatchToProps', () => {
-    it('should return an object with houseData for dispatch to call', () => {
+    it('should return an object with houseData as props', () => {
       const houses = [{house: 'a'}, {house: 'b'}]
       const mockDispatch = jest.fn();
       const actionToDispatch = houseData(houses);
@@ -27,7 +27,7 @@ describe('App', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
 
-    it('should return an object with isLoading for dispatch to call', () => {
+    it('should return an object with isLoading as props', () => {
       const boolean = true;
       const mockDispatch = jest.fn();
       const actionToDispatch = isLoading(boolean);
