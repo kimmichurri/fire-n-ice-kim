@@ -4,7 +4,7 @@ import React from 'react';
 export default function Loader() {
   return (
     <div>
-      <p>Loading...</p>
+      <h1>Loading...</h1>
       {/* <img>src='../../assets/wolf.gif'</img> */}
     </div>
   )
