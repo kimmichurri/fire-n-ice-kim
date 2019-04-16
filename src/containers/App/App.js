@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import { houseData } from '../../actions';
+import { isLoading } from '../../actions';
+import CardContainer from '../CardContainer/CardContainer';
+import Loader from '../../components/Loader/Loader';
 
 export class App extends Component {
 
@@ -14,15 +17,17 @@ export class App extends Component {
     const url = 'http://localhost:3001/api/v1/houses'
     try {
       const response = await fetch(url);
+      this.props.isLoading(true);
       if(!response.ok) {
-        throw new Error
+        throw new Error()
       }
       const houses = await response.json();
       console.log('houses', houses);
       this.props.houseData(houses);
+      this.props.isLoading(false);
     } catch(error) {
       console.log(error.message)
-      //this is where you will want to dispatch error.message to be set in store
+      //this is where you will want to dispatch an ac to set error message in store
     }
   }
 
@@ -34,14 +39,21 @@ export class App extends Component {
           <h2>Welcome to Westeros</h2>
         </div>
         <div className='Display-info'>
+        {this.props.loading && <Loader />}
+        <CardContainer />
         </div>
       </div>
     );
   }
 }
 
+export const mapStateToProps = (state) => ({
+  loading: state.loading
+});
+
 export const mapDispatchToProps = (dispatch) => ({
-  houseData: (houses) => dispatch(houseData(houses))
+  houseData: (houses) => dispatch(houseData(houses)),
+  isLoading: (boolean) => dispatch(isLoading(boolean))
 });
 
 export default connect(null, mapDispatchToProps)(App);
