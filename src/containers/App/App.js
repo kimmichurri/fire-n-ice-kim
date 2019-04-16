@@ -39,8 +39,7 @@ export class App extends Component {
           <h2>Welcome to Westeros</h2>
         </div>
         <div className='Display-info'>
-        {this.props.loading && <Loader />}
-        <CardContainer />
+        {this.props.loading ? <Loader /> : <CardContainer />}
         </div>
       </div>
     );
