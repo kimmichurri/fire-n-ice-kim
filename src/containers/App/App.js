@@ -4,7 +4,23 @@ import './App.css';
 
 class App extends Component {
 
-  
+  componentDidMount = () => {
+    this.getHouses();
+  } 
+
+  getHouses = async () => {
+    const url = 'http://localhost:3001/api/v1/houses'
+    try {
+      const response = await fetch(url);
+      if(!response.ok) {
+        throw new Error
+      }
+      const results = await response.json();
+      console.log(results);
+    } catch(error) {
+      console.log(error.message)
+    }
+  }
 
   render() {
     return (
