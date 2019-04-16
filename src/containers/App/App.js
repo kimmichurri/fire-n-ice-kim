@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { connect } from 'react-redux';
+import { houseData } from '../../actions';
 
-class App extends Component {
+export class App extends Component {
 
   componentDidMount = () => {
     this.getHouses();
@@ -15,10 +17,12 @@ class App extends Component {
       if(!response.ok) {
         throw new Error
       }
-      const results = await response.json();
-      console.log(results);
+      const houses = await response.json();
+      console.log('houses', houses);
+      this.props.houseData(houses);
     } catch(error) {
       console.log(error.message)
+      //this is where you will want to dispatch error.message to be set in store
     }
   }
 
@@ -36,4 +40,8 @@ class App extends Component {
   }
 }
 
-export default App;
+export const mapDispatchToProps = (dispatch) => ({
+  houseData: (houses) => dispatch(houseData(houses))
+});
+
+export default connect(null, mapDispatchToProps)(App);
